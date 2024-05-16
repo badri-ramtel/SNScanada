@@ -12,7 +12,7 @@ from django.contrib import messages
 # Create your views here.
 def home(request):
     obj = Slider.objects.all()
-    counter = Slider.objects.all().count()
+    # counter = Slider.objects.all().count()
     # print('counter:', counter)
     about = About.objects.all()
     pre = President.objects.all()
@@ -25,7 +25,7 @@ def home(request):
     app = Appreciations.objects.all()
     docs = list(chain(laws, ref, app))
     committee = Year_Book.objects.all() 
-    context = {'obj': obj, 'about': about, 'pre': pre, 'categories': categories, 'photos': photos, 'eventor': eventor, 'news': news, 'docs': docs, 'counter': counter, 'committee': committee}
+    context = {'obj': obj, 'about': about, 'pre': pre, 'categories': categories, 'photos': photos, 'eventor': eventor, 'news': news, 'docs': docs, 'committee': committee}
     return render(request, 'main_app/home.html', context) 
 
 
