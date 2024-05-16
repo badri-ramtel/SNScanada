@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} SNS Canada | View Vacancy {% endblock title%}
+
+{% block content %}
+  <!-- dummy start -->
+  <div class="dummy">
+
+  </div>
+  <!-- dummy end -->
+
+  <div class="content">
+    <div class="design">
+      <div class="content-left">
+        <div>
+        
+          <div class="about-content">
+            <div class="d-flex justify-content-between">
+              <div class="primary-heading">{{vac.f_name}}</div>
+              <div><a href="{% url 'contactapp-vacancy'%}" class="btn btn-secondary px-4">Back</a></div>
+            </div>
+            <div>
+              <div class="pt-2 sub-heading">Vacancy</div>
+                <div class="card py-3" style="width: 20rem;">
+                  <div class="img-size">
+                    <img src="{{vac.image.url}}" class="card-img-top" alt="...">
+                  </div>
+                </div>
+                <div class="about-content">
+                  <p>{{vac.vacancy_content | safe}}</p> 
+                </div>
+            </div>
+          </div>
+     
+        </div>
+      </div>
+
+      <div class="content-right">
+        {% include 'core/sidebar.html' %}
+      </div>
+      
+    </div>
+  </div>
+{% endblock content %}

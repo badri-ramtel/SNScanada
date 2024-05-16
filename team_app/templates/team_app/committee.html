@@ -1,0 +1,94 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} SNS Canada | Executive Committees {% endblock title%}
+
+{% block content %}
+  <!-- dummy start -->
+  <div class="dummy">
+
+  </div>
+  <!-- dummy end -->
+
+  <div class="content">
+    <div class="gallery-page">
+        <div class="design-list pb-3">
+          <div class="primary-heading">Executive Committee</div>
+        </div>
+    </div>
+    <div class="gallery-page">
+      <div class="form-quote mx-3">
+        <p>Executive Committee</p> 
+        <p>SNS team is comprised of talented and experienced individuals who work together with core values, hard work, and trust. We sincerely enjoy the work we do, and our community gets to reap the benefits.</p>
+      </div>
+    </div>
+    
+
+    <div class="messenger">
+      {% for msg in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{msg}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Gallery Start-->
+    <div class="design">
+      <div class="col-2">
+        <div class="row">
+          <div class="card text-center border border-info">
+            <div class="card-header">Committees</div>
+            <ul class="list-group list-group-flush" id="list-group">
+              {% for items in committee %}
+              <li class="list-group-item text-nowrap nav-text">
+                <a class="nav-link overflow-x-hidden" href="{% url 'teamapp-team' %}?member={{items.year_frame}}">{{items.year_frame}}</a>
+              </li>
+              {% endfor %} 
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10">
+        <div class="row">
+          {% for item in page_obj %}
+          <div class="col-md-3 m-0 p-0">
+            <div class="album">
+              <a href="{% url 'teamapp-viewcommittee' item.id %}">
+                <div class="profile-cover">
+                  <img class="object-fit-cover w-100" src="{{item.profile_pic.url}}" alt="picture here..."/>
+                </div>
+                <div class="text-center">
+                  <div class="album-text-title text-info p-2"><h6>{{item.name}}</h6></div>
+                  <div class="album-text-title">{{item.position}}</div> 
+                  {% comment %} <div class="album-text-title">&lpar;{{item.start_date | date:"Y"}}-{{item.end_date | date:"Y"}}&rpar;</div> {% endcomment %}
+                </div>
+              </a>
+            </div>
+          </div>
+            {% empty %}
+              <div class="text-center m-5"><h3>No Executive Member Available....</h3></div>
+          {% endfor %}  
+        </div>
+
+        <br>
+        <div class="text-center">
+          {% if page_obj.has_previous %}
+            {% comment %} <a href="?page=1"> &laquo First </a> {% endcomment %}
+            <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+          {% endif %}
+          page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% comment %} <a href="?page={{page_obj.paginator.num_pages}}">Last &raquo </a> {% endcomment %}
+          {% endif %}
+        </div>
+        <br>
+        
+      </div>
+      
+    </div>
+    <!-- Gallery End--> 
+  </div>      
+
+{% endblock content %}

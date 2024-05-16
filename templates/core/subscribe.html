@@ -1,0 +1,24 @@
+<!-- Subscribe Start -->
+<section class="subscribe flexer">
+    <div class="sub-left">
+      <div id="scroll-container">
+        <div class="subscribe-title" id="scroll-text">
+          <h2>Subscribe to our Newsletter</h2>
+        </div>
+      </div>
+    </div>
+      
+    <div class="sub-right">
+      <div class="subscribe-form">
+        <div>
+          <form action="http://127.0.0.1:8000/subscribe/" method="POST" class="sub-form">
+            {% csrf_token %}
+              <input type="email" name="email" id="email" placeholder="Your Email Address Here" required>
+              <button type="submit" class="sub-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+      
+</section>
+<!-- Subscribe End -->
