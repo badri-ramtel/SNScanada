@@ -53,11 +53,11 @@
                         <ul class="dropdown-menu" id="sub-menu">
                             <li class="dropdown-item" id="sub-dropdown-item">
                                 <a href="{% url 'teamapp-team' %}">Executive Committee</a>
-                                <ul class="dropdown-menu" id="">
+                                {% comment %} <ul class="dropdown-menu" id="">
                                     {% for item in committee %}
                                         <li class="dropdown-item d-flex"><a href="{% url 'teamapp-team' %}?member={{item.year_frame}}">{{item.year_frame}}</a></li>
                                     {% endfor %}
-                                </ul>
+                                </ul> {% endcomment %}
                             </li>
                         </ul>
                     </li>
