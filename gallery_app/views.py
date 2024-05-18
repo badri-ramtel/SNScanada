@@ -14,7 +14,7 @@ def gallery(request):
     categories = Category.objects.all()
     committee = Year_Book.objects.all()
     # photo_list = Photo.objects.all()
-    paginator = Paginator(photos,8)
+    paginator = Paginator(photos,12)
     page_number = request.GET.get('page')
     try: 
         page_obj = paginator.get_page(page_number)

@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from contact_app.models import FeedBack, Member, Vacancy, Donation
-from main_app.models import President
 from event_app.models import Event, CreateEvent
-from team_app.models import Year_Book
 from django.contrib import messages
 
 
@@ -24,8 +22,7 @@ def contact(request):
         form.save()
         messages.success(request, 'SNS canada Thank you for your Feedback!')
         return redirect('contactapp-contact')
-    committee = Year_Book.objects.all()
-    return render(request, 'contact_app/contact.html',{'committee': committee})
+    return render(request, 'contact_app/contact.html')
 
 
 def member(request):
@@ -59,27 +56,21 @@ def member(request):
     
     eventor = CreateEvent.objects.all()
     news = Event.objects.filter(created_events__event_name= 'News')
-    # pre = President.objects.all()
-    committee = Year_Book.objects.all()
-    context = {'eventor': eventor, 'news': news, 'committee': committee}
+    context = {'eventor': eventor, 'news': news}
     return render(request, 'contact_app/member.html', context)
 
 def vacancy(request):
     eventor = CreateEvent.objects.all()
     news = Event.objects.filter(created_events__event_name= 'News')
-    # pre = President.objects.all()
     vacancies = Vacancy.objects.all()
-    committee = Year_Book.objects.all()
-    context = {'vacancies': vacancies, 'eventor': eventor, 'news': news, 'committee': committee}
+    context = {'vacancies': vacancies, 'eventor': eventor, 'news': news}
     return render(request, 'contact_app/vacancy.html', context)
 
 def view_vacancy(request, pk):
     eventor = CreateEvent.objects.all()
     news = Event.objects.filter(created_events__event_name= 'News')
-    # pre = President.objects.all()
     vac = Vacancy.objects.get(id= pk)
-    committee = Year_Book.objects.all()
-    context = {'vac': vac , 'eventor': eventor, 'news': news, 'committee': committee}
+    context = {'vac': vac , 'eventor': eventor, 'news': news}
     return render(request, 'contact_app/view_vacancy.html', context)
 
 def donate(request):
@@ -118,7 +109,5 @@ def donate(request):
     
     eventor = CreateEvent.objects.all()
     news = Event.objects.filter(created_events__event_name= 'News')
-    # pre = President.objects.all()
-    committee = Year_Book.objects.all()
-    context = {'eventor': eventor, 'news': news, 'committee': committee}
+    context = {'eventor': eventor, 'news': news}
     return render(request, 'contact_app/donate.html', context)

@@ -1,18 +1,14 @@
 from django.shortcuts import render, redirect
-from main_app.models import President
 from event_app.models import Event, CreateEvent
 from document_app.models import Laws, References, Appreciations, Registrations, Program_Registrations
 from django.contrib import messages
-from team_app.models import Year_Book
 
 # Create your views here.
 def lac(request):
-    # pre = President.objects.all()
     eventor = CreateEvent.objects.all()
     news = Event.objects.filter(created_events__event_name= 'News')
     docs = Laws.objects.all()
-    committee = Year_Book.objects.all()
-    context = {'eventor': eventor, 'docs': docs, 'news': news, 'committee': committee}
+    context = {'eventor': eventor, 'docs': docs, 'news': news}
     return render(request, 'document_app/lac.html', context)
 
 
@@ -21,17 +17,14 @@ def reference(request):
     eventor = CreateEvent.objects.all()
     news = Event.objects.filter(created_events__event_name= 'News')
     docs = References.objects.all()
-    committee = Year_Book.objects.all()
-    context = {'eventor': eventor, 'docs': docs, 'news': news, 'committee': committee}
+    context = {'eventor': eventor, 'docs': docs, 'news': news}
     return render(request, 'document_app/reference.html', context)
 
 def appreciation(request):
-    # pre = President.objects.all()
     eventor = CreateEvent.objects.all()
     news = Event.objects.filter(created_events__event_name= 'News')
     docs = Appreciations.objects.all()
-    committee = Year_Book.objects.all()
-    context = {'eventor': eventor, 'docs': docs, 'news': news, 'committee': committee}
+    context = {'eventor': eventor, 'docs': docs, 'news': news}
     return render(request, 'document_app/appreciation.html', context)
 
 def register(request):
@@ -67,11 +60,9 @@ def register(request):
         form.save()
         messages.success(request, 'SNS Family Thank you for registering!!!')
         return redirect('documentapp-register')
-     
-    # pre = President.objects.all()
+    
     eventor = CreateEvent.objects.all()
     news = Event.objects.filter(created_events__event_name= 'News')
     reg = Registrations.objects.all()
-    committee = Year_Book.objects.all()
-    context = {'eventor': eventor, 'news': news, 'reg': reg, 'committee': committee}
+    context = {'eventor': eventor, 'news': news, 'reg': reg}
     return render(request, 'document_app/program_registration.html', context)

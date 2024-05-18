@@ -325,17 +325,11 @@ ul li {
   max-width: 1200px;
   margin: auto;
   justify-content: center;
-  /* background: red; */
 }
 
 .design-third {
-  /* padding: 20px; */
-  /* margin: 20px; */
   display: flex;
-  /* max-width: 1200px; */
-  /* margin: auto; */
   justify-content: center;
-  /* background: red; */
 }
 
 .content-left {
@@ -352,9 +346,6 @@ ul li {
   padding-bottom: 0.3rem;
 }
 
-/* .heading-title {
-  text-align: center;
-} */
 
 .primary-heading:after {
   content: "";
@@ -448,6 +439,12 @@ ul li {
   padding: 10px;
   margin: 10px;
   width: 33.33%;
+}
+
+.design .col-md-5 {
+  padding: 10px;
+  margin: 10px;
+  width: 32%;
 }
 
 .card-design {
@@ -1082,7 +1079,7 @@ button{
   -webkit-box-orient: vertical;
   overflow: hidden;
   overflow-y: scroll;
-}
+} 
  
 #home-list-group {
   --bs-list-group-item-padding-y: 5.7px;
@@ -1200,5 +1197,14 @@ label.required::after {
 
 .location h3 {
   color: var(--br);
+}
+
+.dropdown-toggle[aria-expanded="true"]:after {
+  transform: rotate(-180deg); 
+}
+
+#year-list {
+  height: 15rem;
+  overflow-y: scroll;
 }
 /*# sourceMappingURL=style.css.map */

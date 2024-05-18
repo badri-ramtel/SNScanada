@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from team_app.models import Year_Book, Committee
+from team_app.models import Year_Book, Committee, SubMenu
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Create your views here.
@@ -12,7 +12,7 @@ def team(request):
         community = Committee.objects.filter(year__year_frame= teams)
         
     committee = Year_Book.objects.all() 
-    paginator = Paginator(community,2)
+    paginator = Paginator(community,12)
     page_number = request.GET.get('page')
     try:
         page_obj = paginator.get_page(page_number)
@@ -23,7 +23,8 @@ def team(request):
     except EmptyPage:
         page_obj = paginator.get_page(paginator.num_pages)
 
-    context = {'page_obj': page_obj, 'committee': committee}
+    quote = SubMenu.objects.all()
+    context = {'page_obj': page_obj, 'committee': committee, 'quote': quote}
     return render(request, 'team_app/committee.html', context) 
 
 def viewCommittee(request, pk): 

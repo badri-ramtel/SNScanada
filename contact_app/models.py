@@ -12,7 +12,7 @@ STATUS_CHOICES = {
 class FeedBack(models.Model):
     date = models.DateTimeField(auto_now_add= True)
     full_name = models.CharField(max_length= 100, null= False, blank= False)
-    email = models.EmailField(null= False, blank= False) 
+    email = models.EmailField(max_length= 254, null= False, blank= False) 
     address = models.CharField(max_length= 200, null= False, blank= False)
     # contact = PhoneNumberField(max_length= 13, blank= False, help_text= 'your contact number')
     contact = models.CharField(max_length= 15, null= False, blank= False)
@@ -36,7 +36,7 @@ class Member(models.Model):
     date = models.DateTimeField(auto_now_add= True)
     first_name = models.CharField(max_length= 100, null= False, blank= False)
     last_name = models.CharField(max_length= 100, null= False, blank= False)
-    email = models.EmailField(null= False, blank= False)
+    email = models.EmailField(max_length= 254, null= False, blank= False)
     contact = PhoneNumberField(max_length= 13, blank= False, help_text= 'your contact number')
     address1 = models.CharField(max_length= 200, null= False, blank= False)
     address2 = models.CharField(max_length= 200, null= True, blank= True)
@@ -48,7 +48,7 @@ class Member(models.Model):
         ("LIFETIME", 'lifetime'),
     )
     membership = models.CharField(max_length= 9, choices= members, default= 'GENERAL')
-    screenshot = models.ImageField(null= False, blank= False)
+    screenshot = models.ImageField(upload_to= 'images/payments/membership/', null= False, blank= False)
     status = models.CharField(max_length= 1, choices= CONDITION, default= 'U')
 
     def __str__(self):
@@ -63,7 +63,7 @@ class Member(models.Model):
 class Vacancy(models.Model):
     f_name = models.CharField(max_length= 200, null= False, blank= False)
     c_date = models.DateField(auto_created= False)
-    image = models.ImageField(null= True, blank= True)
+    image = models.ImageField(upload_to='images/vacancy/', null= True, blank= True)
     vacancy_content = HTMLField(null= True)
 
     def __str__(self):
@@ -79,7 +79,7 @@ class Donation(models.Model):
     date = models.DateTimeField(auto_now= True, auto_created= True)
     first_name = models.CharField(max_length= 100, null= False, blank= False)
     last_name = models.CharField(max_length= 100, null= False, blank= False)
-    email = models.EmailField(null= False, blank= False)
+    email = models.EmailField(max_length= 254, null= False, blank= False)
     contact = models.IntegerField(blank= False)
     address_1 = models.CharField(max_length= 200, null= False, blank= False)
     address_2 = models.CharField(max_length= 200, null= True, blank= True)
@@ -95,7 +95,7 @@ class Donation(models.Model):
     )
     donation_type = models.CharField(max_length= 12, choices= donate)
     amount = models.IntegerField(null= False, blank= False)
-    screenshot = models.ImageField(null= False, blank= False)
+    screenshot = models.ImageField(upload_to= 'images/payments/donation/', null= False, blank= False)
     status = models.CharField(max_length= 1, choices= CONDITION, default= 'U')
 
     def __str__(self):

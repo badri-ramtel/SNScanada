@@ -9,7 +9,7 @@
   </div>
   <!-- dummy end -->
 
-  <div class="content">
+  <div class="content justify-content-center">
     <div class="gallery-page">
         <div class="design-list pb-3">
           <div class="primary-heading">Gallery</div>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="design">
-      <div class="col-2">
+      <div class="col-md-2">
         <div class="row">
           <div class="card border border-info">
              <div class="card-header text-center">Categories</div>
@@ -33,10 +33,10 @@
         </div>
       </div> 
 
-      <div class="col-10">
+      <div class="col-md-10">
         <div class="row">
           {% for photo in page_obj %}
-          <div class="col-md-3 m-0 p-0"> 
+          <div class="col-md-3 col-sm-6 m-0 p-0"> 
             <div class="album">
               <div class="album-cover">
                 <img class="image-thumbnail w-100" src="{{photo.image.url}}" alt="picture here..."/>

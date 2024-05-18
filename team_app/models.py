@@ -16,21 +16,33 @@ class Year_Book(models.Model):
 
 class Committee(models.Model):
     year = models.ForeignKey(Year_Book, on_delete= models.SET_NULL, null= True, blank= True)
-    profile_pic = models.ImageField(upload_to='upload/', null= False)
+    profile_pic = models.ImageField(upload_to='images/committees/profile_pic/', null= False, blank= False)
     name = models.CharField(max_length= 150, null= False, blank= False)
     position = models.CharField(max_length= 150, null= False, blank= False)
     address = models.CharField(max_length= 200, null= False, blank= False)
     education = models.CharField(max_length= 100, null= False, blank= False)
     profession = models.CharField(max_length= 100, null= False, blank= False)
-    email = models.EmailField()
+    email = models.EmailField(max_length= 254)
 
     def __str__(self):
-        return self.name
+        return f'{self.name}:: {self.year}'
     
     class Meta:
         db_table = 'Committee'
         verbose_name_plural = 'Committee'
         ordering = ['-id']
         
+
+class SubMenu(models.Model):
+    submenu = models.CharField(max_length= 100, null= False, blank= False)
+
+    def __self__(self):
+        return self.submenu
+
+    class Meta:
+        db_table = 'Sub Menu'
+        verbose_name_plural = 'Sub Menu'
+        ordering = ['-id']
+
 
 

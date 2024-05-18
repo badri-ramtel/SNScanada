@@ -4,7 +4,7 @@ from tinymce.models import HTMLField
 
 
 class About(models.Model):
-    about_content = HTMLField()
+    about_content = HTMLField(null= False, blank= False)
 
     def __self__(self):
         return self.about_content
@@ -15,7 +15,7 @@ class About(models.Model):
 
 
 class Vision(models.Model):
-    vision_content = HTMLField()
+    vision_content = HTMLField(null= False, blank= False)
 
     def __self__(self):
         return self.vision_content
@@ -26,7 +26,7 @@ class Vision(models.Model):
 
 
 class Term(models.Model):
-    term_content = HTMLField(null= True)
+    term_content = HTMLField(null= False, blank= False)
 
     def __self__(self):
         return f'{self.term_content}'

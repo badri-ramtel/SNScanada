@@ -4,7 +4,6 @@ from about_app.models import About
 from gallery_app.models import Category, Photo
 from event_app.models import Event, CreateEvent
 from document_app.models import Laws, References, Appreciations
-from team_app.models import Year_Book
 from itertools import chain
 from django.http import HttpResponse
 from django.contrib import messages
@@ -23,18 +22,17 @@ def home(request):
     laws = Laws.objects.all()
     ref = References.objects.all()
     app = Appreciations.objects.all()
-    docs = Laws.objects.all()
-    committee = Year_Book.objects.all() 
-    context = {'obj': obj, 'about': about, 'pre': pre, 'categories': categories, 'photos': photos, 'eventor': eventor, 'news': news, 'docs': docs, 'committee': committee}
+    docs = list(chain(laws, ref, app))
+    # docs = Laws.objects.all() 
+    context = {'obj': obj, 'about': about, 'pre': pre, 'categories': categories, 'photos': photos, 'eventor': eventor, 'news': news, 'docs': docs,}
     return render(request, 'main_app/home.html', context) 
 
 
 def president(request):
     president = President.objects.all()
     eventor = CreateEvent.objects.all()
-    committee = Year_Book.objects.all() 
     news = Event.objects.filter(created_events__event_name= 'News')
-    context = {'president': president, 'eventor': eventor, 'news': news, 'committee': committee}
+    context = {'president': president, 'eventor': eventor, 'news': news}
     return render(request, 'main_app/president.html', context)
 
 
@@ -43,6 +41,7 @@ def subscribe(request):
         email = request.POST.get('email')
         form = Subscribe(email= email)
         form.save()
-        # messages.success(request, 'SNS Family Thank you for registering!!!')
+        messages.success(request, 'SNS Family Thank you for registering!!!')
         return redirect(request.META['HTTP_REFERER'])
+
     

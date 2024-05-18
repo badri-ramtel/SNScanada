@@ -11,10 +11,10 @@
     <div class="sub-right">
       <div class="subscribe-form">
         <div>
-          <form action="http://127.0.0.1:8000/subscribe/" method="POST" class="sub-form">
+          <form action="http://127.0.0.1:8000/subscribe/" onsubmit="myFunction()" method="POST" class="sub-form">
             {% csrf_token %}
               <input type="email" name="email" id="email" placeholder="Your Email Address Here" required>
-              <button type="submit" class="sub-btn">Subscribe</button>
+              <button type="submit" class="sub-btn" >Subscribe</button>
           </form>
         </div>
       </div>

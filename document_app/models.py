@@ -3,9 +3,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 class Laws(models.Model):
-    f_name = models.CharField(max_length= 200, null= False, blank= False)
+    f_name = models.CharField(max_length= 254, null= False, blank= False)
     c_date = models.DateField(auto_created= False)
-    files = models.FileField(upload_to= 'uploads/')
+    files = models.FileField(upload_to= 'files/laws/', max_length= 254)
 
     def __str__(self):
         return f'{self.f_name}' 
@@ -15,9 +15,9 @@ class Laws(models.Model):
         verbose_name_plural = 'Laws and Convention'
 
 class References(models.Model):
-    f_name = models.CharField(max_length= 200, null= False, blank= False)
+    f_name = models.CharField(max_length= 254, null= False, blank= False)
     c_date = models.DateField(auto_created= False)
-    files = models.FileField(upload_to= 'uploads/')
+    files = models.FileField(upload_to= 'files/references/', max_length= 254)
 
     def __str__(self):
         return f'{self.f_name}'
@@ -28,9 +28,9 @@ class References(models.Model):
 
 
 class Appreciations(models.Model):
-    f_name = models.CharField(max_length= 200, null= False, blank= False)
+    f_name = models.CharField(max_length= 254, null= False, blank= False)
     c_date = models.DateField(auto_created= False)
-    files = models.FileField(upload_to= 'uploads/')
+    files = models.FileField(upload_to= 'files/appreciations/', max_length= 254)
 
     def __str__(self):
         return f'{self.f_name}'
@@ -40,9 +40,9 @@ class Appreciations(models.Model):
         verbose_name_plural = 'Appreciation'
 
 class Registrations(models.Model):
-    f_name = models.CharField(max_length= 200, null= False, blank= False)
+    f_name = models.CharField(max_length= 254, null= False, blank= False)
     c_date = models.DateField(auto_created= False)
-    files = models.FileField(upload_to= 'uploads/')
+    files = models.FileField(upload_to= 'files/registrations/', max_length= 254)
 
     def __str__(self):
         return f'{self.f_name}'
@@ -64,17 +64,17 @@ class Program_Registrations(models.Model):
     city = models.CharField(max_length= 400, null= False, blank= False)
     province = models.CharField(max_length= 400, null= False, blank= False)
     postal_code = models.IntegerField(null= True, blank= True)
-    your_contact = PhoneNumberField(max_length= 13, blank= False, help_text= 'your contact number')
-    your_email = models.EmailField(null= False, blank= False)
+    your_contact = PhoneNumberField(max_length= 13, null= False, blank= False, help_text= 'your contact number')
+    your_email = models.EmailField(max_length= 254, null= False, blank= False)
     parents_full_name = models.CharField(max_length= 200, null= False, blank= False)
-    parents_contact = PhoneNumberField(max_length= 13, blank= False, help_text= 'your contact number')
-    parents_email = models.EmailField(null= False, blank= False)
+    parents_contact = PhoneNumberField(max_length= 13, null= False, blank= False, help_text= 'your contact number')
+    parents_email = models.EmailField(max_length= 254, null= False, blank= False)
     categories = (
         ("SUMMER", 'summer'), 
         ("WINTER", 'winter'),
     )
     program = models.CharField(max_length= 12, choices= categories)
-    screenshot = models.ImageField(upload_to= 'uploads/', null= False, blank= False)
+    screenshot = models.ImageField(upload_to= 'images/payments/program_registration/', null= False, blank= False)
     status = models.CharField(max_length= 1, choices= CONDITION, default= 'U')
 
     def __str__(self):

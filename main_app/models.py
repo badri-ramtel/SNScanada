@@ -4,9 +4,9 @@ from about_app.models import About
 # Create your models here.
 
 class Slider(models.Model):
-    picture = models.ImageField(null= True, blank= True)
+    picture = models.ImageField(upload_to= 'images/slider/', null= False, blank= False)
     title = models.CharField(max_length= 100, null= False, blank= False)
-    sub_title = models.CharField(max_length= 500, null= False, blank= False)
+    sub_title = models.CharField(max_length= 254, null= False, blank= False)
 
     def __str__(self):
         return self.title
@@ -19,7 +19,7 @@ class Slider(models.Model):
 
 class President(models.Model):
     name = models.CharField(max_length= 100, null= False, blank= False)
-    image = models.ImageField(null= False, blank= False)
+    image = models.ImageField(upload_to= 'images/president/', null= False, blank= False)
     p_message = models.TextField()
 
     def __str__(self):
@@ -30,7 +30,7 @@ class President(models.Model):
         verbose_name_plural = 'President'
 
 class Subscribe(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(max_length= 254)
 
     def __self__(self):
         return self.email

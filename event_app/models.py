@@ -16,14 +16,14 @@ class CreateEvent(models.Model):
 
 class Event(models.Model):
     created_events = models.ForeignKey(CreateEvent, on_delete=models.SET_NULL, null= True, blank= True)
-    title = models.CharField(max_length= 200, null= True, blank= True)
-    event_image = models.ImageField(null= True, blank= True)
+    title = models.CharField(max_length= 200, null= False, blank= False)
+    event_image = models.ImageField(upload_to= 'images/event/', null= False, blank= False)
     brief = models.TextField(null= False, blank= False)
-    country = models.CharField(max_length= 200, null= True, blank= True)
-    state = models.CharField(max_length= 200, null= True, blank= True)
+    country = models.CharField(max_length= 200, null= False, blank= False)
+    state = models.CharField(max_length= 200, null= False, blank= False)
     postal_code = models.IntegerField(null= True, blank= True,)
-    venue = models.CharField(max_length= 200, null= True, blank= True)
-    date = models.DateField(auto_created= False, null= True) 
+    venue = models.CharField(max_length= 200, null= False, blank= False)
+    date = models.DateField(auto_created= False, null= False) 
     start_time = models.TimeField()
     end_time = models.TimeField()
 

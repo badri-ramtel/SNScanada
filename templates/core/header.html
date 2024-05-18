@@ -51,14 +51,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false" disabled>Teams</a>
                         <ul class="dropdown-menu" id="sub-menu">
-                            <li class="dropdown-item" id="sub-dropdown-item">
-                                <a href="{% url 'teamapp-team' %}">Executive Committee</a>
-                                {% comment %} <ul class="dropdown-menu" id="">
-                                    {% for item in committee %}
-                                        <li class="dropdown-item d-flex"><a href="{% url 'teamapp-team' %}?member={{item.year_frame}}">{{item.year_frame}}</a></li>
-                                    {% endfor %}
-                                </ul> {% endcomment %}
-                            </li>
+                            <li class="dropdown-item" id="sub-dropdown-item"><a href="{% url 'teamapp-team' %}">Executive Committee</a></li>
                         </ul>
                     </li>
                   
