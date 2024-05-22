@@ -22,8 +22,8 @@ def home(request):
     laws = Laws.objects.all()
     ref = References.objects.all()
     app = Appreciations.objects.all()
-    docs = list(chain(laws, ref, app))
-    # docs = Laws.objects.all() 
+    # docs = list(chain(laws, ref, app))
+    docs = Laws.objects.all() 
     adv = Adversite.objects.all()
     context = {'obj': obj, 'about': about, 'pre': pre, 'categories': categories, 'photos': photos, 'eventor': eventor, 'news': news, 'docs': docs, 'adv': adv}
     return render(request, 'main_app/home.html', context) 
