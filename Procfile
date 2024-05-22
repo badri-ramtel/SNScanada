@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn SNScanada.wsg
+web: gunicorn 'SNScanada.wsgi'
