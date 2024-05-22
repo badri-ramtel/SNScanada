@@ -10,14 +10,14 @@
   <!-- dummy end -->
 
   <div class="content">
-    <div class="design">
+    <div class="design row">
       
-      <div class="content-left">
+      <div class="col-md-8 col-sm-12 p-3">
         <div>
-          <div class="about-content">
+          <div class="about-content m-3">
             <div class="primary-heading">About SNS</div>
             <div>
-              <div class="pt-2 sub-heading">About SNS</div>
+              <div class="pt-2 sub-heading fw-bold">About SNS</div>
               <div class="about-content">
                 {% for item in abo %}
                   {{item.about_content | safe}} <br>
@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <div class="content-right">
+      <div class="col-md-4 col-sm-6 p-3">
         {% include 'core/sidebar.html' %} 
       </div>
 

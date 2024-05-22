@@ -1,6 +1,5 @@
 from django.db import models
-
-from about_app.models import About
+from django.core.validators import FileExtensionValidator 
 # Create your models here.
 
 class Slider(models.Model):
@@ -38,4 +37,16 @@ class Subscribe(models.Model):
     class Meta:
         db_table = 'Subscribe'
         verbose_name_plural = 'Subscribe'
+        ordering = ['-id']
+
+
+class Adversite(models.Model):
+    # content = models.FileField(upload_to='videos/advertisement/',null=True, validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
+    image = models.ImageField(upload_to= 'images/advertise/', null= False, blank= False)
+    def __str__(self):
+        return f'{self.image}'
+    
+    class Meta:
+        db_table = 'Advertisement'
+        verbose_name_plural = 'Advertisement'
         ordering = ['-id']

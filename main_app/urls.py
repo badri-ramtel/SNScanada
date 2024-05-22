@@ -4,5 +4,6 @@ from main_app import views
 urlpatterns = [
     path('', views.home, name='mainapp-home'),
     path('president/', views.president, name='mainapp-president'),
-    path('subscribe/', views.subscribe, name='subscribe')
+    path('subscribe/', views.subscribe, name='subscribe'),
+    # path('advertise/', views.ads, name='advertise')
 ]

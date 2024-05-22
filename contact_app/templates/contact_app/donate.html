@@ -10,15 +10,15 @@
   <!-- dummy end -->
 
   <div class="content">
-    <div class="design">
+    <div class="design row">
     {% comment %} <div class="row">  {% endcomment %}
-      <div class="content-left">
+      <div class="col-md-8 col-sm-12 p-3">
         <div>
             <div class="about-content px-2">
               <div class="primary-heading">Donation</div>
               <div>
                 <div class="my-3">
-                  <p class="text-secondary">Donation</p>
+                  <p class="text-secondary fw-bold">Donation</p>
                   <p class="text-secondary">SNS is a volunteer-based organization working toward helping the local Nepalese family along with fostering our culture. Your donation will help us to increase our support to many more Nepalese family. You can directly contribute (interac) for good cause at <a href="mailto:fund.for.sns@gmail.com">fund.for.sns@gmail.com.</a></p>
                 </div>
 
@@ -86,7 +86,7 @@
                         </select>
                       </div>
           
-                      <div class="col-4 p-2">
+                      <div class="col-6 p-2">
                         <label for="donation_type" class="form-label required">Donation Type</label>
                         <Select name="donation_type" id="donation_type" class="form-select" required>
                           <option>Select a Donation...</option>
@@ -95,7 +95,7 @@
                           <option value="EARTHQUAKE">Earthquake</option>
                         </select>
                       </div>
-                      <div class="col-4 p-2">
+                      <div class="col-6 p-2">
                         <label for="amount" class="form-label required">Donaton Amount (CAD)</label>
                         <input type="number" class="form-control" name="amount" id="amount" required>
                       </div>
@@ -123,7 +123,7 @@
         </div>
       </div>
 
-      <div class="content-right">
+      <div class="col-md-4 col-sm-12 p-3">
         {% include 'core/sidebar.html' %}
       </div>
     {% comment %} </div> {% endcomment %}

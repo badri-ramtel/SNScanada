@@ -15,8 +15,8 @@
 
 <!-- About and President content Start -->
 <div class="content">
-    <div class="design">
-       <div class="content-left" data-aos="fade-up" data-aos-duration="1500">
+    <div class="design row">
+       <div class="col-md-8 col-sm-12 p-3" data-aos="fade-up" data-aos-duration="1500">
          <div>
            <div class="about-content">
              <div class="primary-heading">About Us</div>
@@ -32,12 +32,12 @@
          </div>
        </div>
 
-       <div class="content-right" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="3000">
+       <div class="col-md-4 col-sm-6 p-3" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="3000">
          <div>
           {% for item in pre %}
            <div class="card-design">
              <div class="text-center text-design">Message from President</div>
-             <div class="card" style="width: 18rem;">
+             <div class="card mx-4">
                <div class="img-size">
                  <img src="{{item.image.url}}" class="card-img-top" alt="...">
                </div>
@@ -61,13 +61,13 @@
 
 <!-- events, news and docsuments css Start -->
 <div class="content">
-    <div class="design">
+    <div class="design row">
 
-      <div class="events">
+      <div class="col-md-4 col-sm-8 p-3">
         <div>
           <div class="card-design">
             <div class="design-list">
-              <div class="primary-heading">Events</div> 
+              <div class="primary-heading overflow-hidden">Events</div> 
               <div class="me-4"><h2><i class="bi bi-calendar-event"></i></h2></div>
             </div>
             <div class="list">
@@ -90,11 +90,11 @@
         </div>
       </div>
 
-      <div class="news">
+      <div class="col-md-4 col-sm-8 p-3">
         <div>
           <div class="card-design">
             <div class="design-list">
-              <div class="primary-heading">News/Posts</div>
+              <div class="primary-heading overflow-hidden">News/Posts</div>
               <div class="me-4"><h2><i class="bi bi-newspaper"></i></h2></div>
             </div>
             <div class="list">
@@ -117,11 +117,11 @@
         </div>
       </div>
 
-      <div class="documents">
+      <div class="col-md-4 col-sm-8 p-3">
         <div>
           <div class="card-design">
             <div class="design-list">
-              <div class="primary-heading">Documents/Links</div>
+              <div class="primary-heading overflow-hidden">Document/Link</div>
               <div class="me-4"><h2><i class="bi bi-link-45deg"></i></h2></div>
             </div>
             <div>
@@ -156,13 +156,13 @@
 
 <!-- Gallery, Calendar and Advertise css Start -->
 <div class="content">
-    <div class="design-third">
+    <div class="row">
 
       <!-- Gallery Start-->
-      <div class="gallery">
+      <div class="col-md-6 col-sm-12">
         <div class="">
           <div class="design-list d-flex justify-content-center">
-            <div class="primary-heading">Gallery</div>
+            <div class="primary-heading overflow-hidden">Gallery</div>
           </div>
           <div class="design-list" id="gallery">
             <div class="row gallery-view" id="gallery-views">
@@ -209,10 +209,10 @@
       <!-- Gallery End-->
 
       <!-- Calendar Start -->
-      <div class="calendars">
+      <div class="col-md-3 col-sm-6">
         <div>
           <div class="design-list d-flex justify-content-center">
-            <div class="primary-heading">Calendar</div>
+            <div class="primary-heading overflow-hidden">Calendar</div>
           </div> 
           <div class="design-list">
             {% comment %} <div class="row"> {% endcomment %}
@@ -280,15 +280,26 @@
       <!-- Calendar End -->
 
       <!-- ads and notice Start -->
-      <div class="ads">
+      <div class="col-md-3 col-sm-6">
         <div>
           <div class="design-list d-flex justify-content-center">
-            <div class="primary-heading">Ads/Notice</div>
+            <div class="primary-heading overflow-hidden">Ads/Notice</div>
           </div>
 
           <div class="design-list justify-content-center" >
             <div>
-              <img src="/static/images/ads-here picture.jpg" alt="..." style="height: 340px; max-width: 300px;"/>
+                {% comment %} <video style="height: 340px; max-width: 300px;" autoplay muted>
+                  {% for obj in adv %}
+                    {% if forloop.counter == 1 %}
+                      <source src="{{obj.content.url}}" type="video/mp4">
+                    {% endif %}
+                  {% endfor %}
+                </video> {% endcomment %}
+                {% for obj in adv %}
+                  {% if forloop.counter == 1 %}
+                    <img class="image-thumbnail" src="{{obj.image.url}}" alt="picture here..." style="height: 340px; width: 310px;"/>
+                  {% endif %}
+                {% endfor %}
             </div>
           </div>
         </div>

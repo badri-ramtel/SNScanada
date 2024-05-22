@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from main_app.models import Slider, President, Subscribe
+from main_app.models import Slider, President, Subscribe, Adversite
 from about_app.models import About
 from gallery_app.models import Category, Photo
 from event_app.models import Event, CreateEvent
@@ -24,7 +24,8 @@ def home(request):
     app = Appreciations.objects.all()
     docs = list(chain(laws, ref, app))
     # docs = Laws.objects.all() 
-    context = {'obj': obj, 'about': about, 'pre': pre, 'categories': categories, 'photos': photos, 'eventor': eventor, 'news': news, 'docs': docs,}
+    adv = Adversite.objects.all()
+    context = {'obj': obj, 'about': about, 'pre': pre, 'categories': categories, 'photos': photos, 'eventor': eventor, 'news': news, 'docs': docs, 'adv': adv}
     return render(request, 'main_app/home.html', context) 
 
 
@@ -45,3 +46,7 @@ def subscribe(request):
         return redirect(request.META['HTTP_REFERER'])
 
     
+# def ads(request):
+#     adv = Adversite.objects.all()
+#     context = {'adv': adv}
+#     return render(request, 'main_app/home.html', context)
