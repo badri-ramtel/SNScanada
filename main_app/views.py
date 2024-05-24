@@ -10,7 +10,7 @@ from django.contrib import messages
 
 # Create your views here.
 def home(request):
-    obj = Slider.objects.all()
+    # obj = Slider.objects.all()
     # counter = Slider.objects.all().count()
     # print('counter:', counter)
     about = About.objects.all()
@@ -26,9 +26,13 @@ def home(request):
     docs = chain(laws, ref, app)
     # docs = Laws.objects.all() 
     adv = Adversite.objects.all()
-    context = {'obj': obj, 'about': about, 'pre': pre, 'categories': categories, 'photos': photos, 'eventor': eventor, 'news': news, 'docs': docs, 'adv': adv}
+    context = {'about': about, 'pre': pre, 'categories': categories, 'photos': photos, 'eventor': eventor, 'news': news, 'docs': docs, 'adv': adv}
     return render(request, 'main_app/home.html', context) 
 
+def slider(request):
+    slide = Slider.objects.all()
+    context = {'slide': slide}
+    return render(request, 'main_app/slider.html', context)
 
 def president(request):
     president = President.objects.all()
