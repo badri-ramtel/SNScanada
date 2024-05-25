@@ -12,7 +12,7 @@ from django.contrib import messages
 def home(request):
     # obj = Slider.objects.all()
     # counter = Slider.objects.all().count()
-    # print('counter:', counter)
+    # print('counter:', counter) 
     about = About.objects.all()
     pre = President.objects.all()
     categories = Category.objects.all()
