@@ -31,8 +31,8 @@ DEBUG = True
 # CSRF_COOKIE_SECURE = False
 # SECURE_SSL_REDIRECT = False
 
-ALLOWED_HOSTS = ['*']
-# ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
 
 # Application definition
@@ -162,7 +162,7 @@ STATIC_URL = 'static/'
 #     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
