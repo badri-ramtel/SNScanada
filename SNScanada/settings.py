@@ -31,8 +31,8 @@ DEBUG = True
 # CSRF_COOKIE_SECURE = False
 # SECURE_SSL_REDIRECT = False
 
-# ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 
 # Application definition
