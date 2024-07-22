@@ -1,0 +1,84 @@
+<div>
+    <!-- Carousel wrapper -->
+    <div id="carouselPresident" class="carousel carousel-fade carousel-dark" data-bs-touch="true" data-bs-ride="carousel">
+        <!-- Inner -->
+        <div class="carousel-inner">
+            <!-- Single item -->
+    {% for item in pre %}
+
+        <div class="card-design carousel-item {% if forloop.counter0 == 0 %} active {% endif %} overflow-hidden" data-bs-interval="10000">
+            <div class="text-center text-design">{{item.title}}</div>
+            <div class="card mx-4">
+                <div class="img-size mx-4 mt-1">
+                    <img src="{{item.image.url}}" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body text-center">
+                    <div class="card-title"><h5>{{item.name}}</h5></div>
+                </div>
+                <div>
+                    <em class="president-card_message">
+                        <p class="">{{item.p_message}}</p>
+                    </em>
+                </div>
+                <div class="read-more-one text-center"><a href="{% url 'mainapp-president' %}" class="btn">Read More</a></div>
+            </div>
+        </div>
+
+    {% endfor %} 
+    </div>
+    </div>
+</div>
+
+<div class="pt-4">
+    <div class="card-design">
+        <div class="design-list">
+            <div class="primary-heading text-nowrap overflow-hidden"><h4>Recent Events</h4></div>
+            <div class="me-4"><h2><i class="bi bi-calendar-event"></i></h2></div>
+        </div>
+        <div>
+            <div class="list">
+                {% for item in eventor %}
+                    <div class="list-card">
+                        <div class="list-card-content">
+                            <div class="card-content-left text-nowrap overflow-hidden ms-3 me-3">
+                                <p><a href="{% url 'eventapp-event' %}?eventor={{item.event_name}}">{{item.event_name}}</a></p>
+                            </div>
+                            <div class="card-content-right d-flex justify-content-end text-nowrap me-3"> 
+                                <p>{{item.event_created_date}}</p>
+                            </div>
+                        </div>
+                    </div> 
+                    <hr>
+                {% endfor %}
+            </div>
+            <div class="read-more-one mx-4"><a href="{% url 'eventapp-event' %}" class="btn">See More...</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="pt-4">
+    <div class="card-design">
+      <div class="design-list">
+        <div class="primary-heading text-nowrap overflow-hidden">News/Posts</div>
+        <div class="me-4"><h2><i class="bi bi-newspaper"></i></h2></div>
+      </div>
+      <div>
+        <div class="list">
+            {% for item in news %}
+                <div class="list-card">
+                    <div class="list-card-content">
+                        <div class="card-content-left text-nowrap overflow-hidden ms-3 me-3">
+                            <p><a href="{% url 'aboutapp-viewnews' item.id %}">{{item.title}}</a></p>
+                        </div>
+                        <div class="card-content-right d-flex justify-content-end text-nowrap me-3">
+                            <p>{{item.date}}</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+        <div class="read-more-one mx-4"><a href="{% url 'aboutapp-news'%}" class="btn">See More...</a></div> 
+      </div>
+    </div>
+</div>

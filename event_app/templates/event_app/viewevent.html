@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} SNS Canada | View Event {% endblock title%}
+
+{% block content %}
+  <!-- dummy start -->
+  <div class="dummy">
+
+  </div>
+  <!-- dummy end -->
+
+  <div class="content">
+    <div class="design-gallery row">
+
+      <div class="col-lg-8 col-md-8 col-sm-12 p-3">
+        <div class="mx-3 pb-2"><a href="{% url 'mainapp-home' %}" class="fw-bold"><i class="bi bi-house-door-fill px-1"></i>Home</a> <a href="{% url 'eventapp-event' %}" class="fw-bold px-1">&nbsp; > &nbsp; Event</a><span class="text-secondary">&nbsp; > &nbsp; {{event.title}}</span></div>
+        <div>
+          <div class="about-content m-3">
+            <div class="d-flex justify-content-between">
+              <div class="primary-heading my-2 pe-3">{{event.title}}</div>
+              <div><a href="{% url 'eventapp-event' %}" class="btn px-2 my-2"><h3><i class="bi bi-x-lg"></i></h3></a></div>  
+            </div>
+            <div>
+              <div class="pt-2 sub-heading text-secondary fw-bolder">{{event.sub_title}}</div>
+              <div><p class="text-secondary">{{event.date}}</p></div>
+                <div class="card py-3" style="width: 30rem;">
+                  <div class="img-size">
+                    <img src="{{event.event_image.url}}" class="card-img-top" alt="...">
+                  </div>
+                </div>
+                <div class="about-content">
+                  {{event.brief | safe}}
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-12 px-3">
+        {% include 'core/sidebar.html' %}
+      </div>
+
+    </div>
+  </div>
+{% endblock content %}

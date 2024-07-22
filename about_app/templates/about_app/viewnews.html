@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} SNS Canada | View News {% endblock title%}
+
+{% block content %}
+  <!-- dummy start -->
+  <div class="dummy">
+
+  </div>
+  <!-- dummy end -->
+
+  <div class="content">
+    <div class="design-gallery row">
+
+      <div class="col-lg-8 col-md-8 col-sm-12 p-3">
+        <div class="mx-3 pb-2"><a href="{% url 'mainapp-home' %}" class="fw-bold"><i class="bi bi-house-door-fill px-1"></i>Home</a> <a href="{% url 'aboutapp-news' %}" class="fw-bold px-1">&nbsp; > &nbsp; News</a><span class="text-secondary">&nbsp; > &nbsp; {{view_news.title}}</span></div>
+        <div>
+          <div class="about-content m-3">
+            <div class="d-flex justify-content-between">
+              <div class="primary-heading my-2 pe-3">{{view_news.title}}</div>
+              <div><a href="{% url 'aboutapp-news' %}" class="btn px-2 my-2"><h3><i class="bi bi-x-lg"></i></h3></a></div>  
+            </div>
+            <div>
+              <div class="pt-2 sub-heading text-secondary fw-bolder">{{view_news.sub_title}}</div>
+              <div><p class="text-secondary">{{view_news.date}}</p></div>
+                <div class="card py-3" style="width: 30rem;">
+                  <div class="img-size">
+                    <img src="{{view_news.news_image.url}}" class="card-img-top" alt="...">
+                  </div>
+                </div>
+                <div class="about-content">
+                  {{view_news.brief | safe}}
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-12 px-3">
+        {% include 'core/sidebar.html' %}
+      </div>
+
+    </div>
+  </div>
+{% endblock content %}

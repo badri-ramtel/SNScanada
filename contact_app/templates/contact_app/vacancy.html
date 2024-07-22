@@ -1,0 +1,77 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} SNS Canada | Vacancy {% endblock title%}
+
+{% block content %}
+  <!-- dummy start -->
+  <div class="dummy">
+
+  </div>
+  <!-- dummy end -->
+
+  <div class="content">
+    <div class="design-gallery row">
+      <div class="col-lg-8 col-md-8 col-sm-12 p-3">
+        <div class="pb-2"><a href="{% url 'mainapp-home' %}" class="fw-bold"><i class="bi bi-house-door-fill px-1"></i>Home</a> <span class="text-secondary">&nbsp; > &nbsp; Vacancy</span></div>
+        <div>
+          <div class="doc-table">
+            <div class="about-content">
+              <div class="primary-heading">Vacancy</div>
+              <div>
+                <div class="my-3">
+                  {% for item in ins %}
+                    {% if forloop.revcounter == 1%}
+                      <p class="text-secondary">{{item.instruct | safe}}</p>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                <div class="aboutapp-text"> 
+                    <div>
+                      <table cellspacing="0" cellpadding="0" border="2">
+                        <colgroup>
+                          <col width="314">
+                          <col width="200">
+                          <col width="200">
+                        </colgroup>
+                        <thead class="">
+                          <tr class="wrapper">
+                            <th colspan="1" rowspan="1" >
+                              <div>Name
+                                <span class="caret-wrapper">
+                                  <h6><i class="bi bi-caret-up"></i></h6>
+                                  <h6><i class="bi bi-caret-down"></i></h6>
+                                </span>
+                              </div>
+                            </th>
+                            <th colspan="1" rowspan="1" ><div>Added On</div></th>
+                            <th colspan="1" rowspan="1" ><div class="text-center">Remarks</div></th>
+                          </tr>
+                        </thead>
+                          {% for item in vacancies %}
+                          <tr class="text-secondary">
+                            <td colspan="1" rowspan="1"><div>{{item.f_name}}</div></td>
+                            <td colspan="1" rowspan="1"><div>{{item.c_date}}</div></td>
+                            <td colspan="1" rowspan="1">
+                              <div class="text-center">
+                                <div class="btn btn-success w-75"><a class="text-white" href="{% url 'contactapp-view' item.id %}">Apply</a></div>
+                              </div>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                      </table>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12 px-3">
+        {% include 'core/sidebar.html' %}
+      </div>
+      
+    </div>
+  </div>
+{% endblock content %}

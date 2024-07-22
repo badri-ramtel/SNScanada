@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} About | Page {% endblock title%}
+
+{% block content %}
+  <!-- dummy start -->
+  <div class="dummy">
+
+  </div>
+  <!-- dummy end -->
+
+  <!-- Content-1 Start --> 
+  <div class="content">
+    <div class="design-gallery row">
+       <div class="col-lg-8 col-md-8 col-sm-12 px-3">
+         <div class="pb-2"><a href="{% url 'mainapp-home' %}" class="fw-bold"><i class="bi bi-house-door-fill px-1"></i>Home</a> <span class="text-secondary">&nbsp; > &nbsp; President</span></div>
+         <div>
+           <div class="about-content">
+            {% for msg in message %}
+            {% if forloop.revcounter0 < 1 %}
+             <div class="primary-heading">{{msg.message}}</div>
+            {% endif %}
+            {% endfor %}
+             <div>
+              {% for item in president %}
+                <div class="about-text d-flex row">
+                  <div class="president-detail col-md-4 col-sm-12 px-2">
+                    <img class="image-thumbnail" src="{{item.image.url}}" alt="picture here..."/>
+                    <p class="pt-3"><h5 class="fst-italic"><u>{{item.name}}</U></h5></p>
+                  </div>
+                  <div class="col-md-8 col-sm-12"><p>{{item.p_message}}</p></div>  
+                </div>
+                <br>
+                <hr style="color: gray !important; opacity: 100% !important;">
+              {% endfor %}
+             </div>
+           </div>
+         </div>
+       </div>
+
+       <div class="col-lg-4 col-md-4 col-sm-12 px-3">
+        {% include 'core/sidebar.html' %}
+       </div>
+    </div>
+  </div>
+ <!-- Content-1 End -->
+{% endblock content %}

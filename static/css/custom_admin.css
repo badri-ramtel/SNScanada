@@ -1,0 +1,8 @@
+/* custom_admin.css */
+#header {
+  background-image: url('/static/images/sns-logo.png'); /* Replace with your logo path */
+  background-size: contain; /* Adjust based on your logo dimensions */
+  background-repeat: no-repeat;
+  height: 20px; /* Adjust height as needed */
+  background-color: var(--header-bg);
+}

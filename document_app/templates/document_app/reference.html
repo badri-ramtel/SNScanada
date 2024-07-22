@@ -1,0 +1,67 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} SNS Canada | Reference {% endblock title%}
+
+{% block content %}
+  <!-- dummy start -->
+  <div class="dummy">
+
+  </div>
+  <!-- dummy end -->
+
+  <div class="content">
+    <div class="design-gallery row">
+      <div class="col-lg-8 col-md-8 col-sm-12 p-3">
+        <div class="pb-2"><a href="{% url 'mainapp-home' %}" class="fw-bold"><i class="bi bi-house-door-fill px-1"></i>Home</a> <span class="text-secondary">&nbsp; > &nbsp; Reference</span></div>
+        <div>
+          <div class="doc-table">
+            <div class="about-content">
+              <div class="primary-heading">Reference</div>
+              <div>
+                <div class="my-3"><p class="text-secondary">View and download the Company Reference related documents</p></div>
+                <div class="aboutapp-text">
+                    <div style="overflow-x: auto;">
+                      <table cellspacing="0" cellpadding="0" border="2" style="width: 100%; table-layout: fixed; overflow: hidden;">
+                        <thead class="border border-dark">
+                          <tr class="wrapper text-center">
+                            <th colspan="1" rowspan="1" class="border border-dark">
+                              <div>Name
+                                <span class="caret-wrapper">
+                                  <h6><i class="bi bi-caret-up"></i></h6>
+                                  <h6><i class="bi bi-caret-down"></i></h6>
+                                </span>
+                              </div>
+                            </th>
+                            <th colspan="1" rowspan="1" class="border border-dark"><div>Added On</div></th>
+                            <th colspan="1" rowspan="1" class="border border-dark"><div class="text-center">View/Download</div></th>
+                          </tr>
+                        </thead>
+                          {% for item in docs %}
+                          <tr class="text-secondary text-center">
+                            <td colspan="1" rowspan="1" class="border border-dark"><div class="text-wrap overflow-hidden">{{item.f_name}}</div></td>
+                            <td colspan="1" rowspan="1" class="border border-dark"><div class="text-wrap overflow-hidden">{{item.c_date}}</div></td>
+                            <td colspan="1" rowspan="1" class="border border-dark">
+                              <div class="text-center">
+                                <button type="button" class="is-circle"><h6><a href="/media/{{item.files}}" target="_blank"><i class="bi bi-eye"></i></a></h6></button>
+                                <button type="button" class="is-circle doc-download"><h6><a href="/media/{{item.files}}" download><i class="bi bi-download"></i></a></h6></button> 
+                              </div>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                      </table>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-12 px-3">
+        {% include 'core/sidebar.html' %}
+      </div>
+
+    </div>
+  </div>
+{% endblock content %}

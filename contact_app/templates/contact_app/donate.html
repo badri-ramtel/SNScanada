@@ -1,0 +1,142 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} SNS Canada | Donation {% endblock title%}
+
+{% block content %}
+  <!-- dummy start -->
+  <div class="dummy">
+
+  </div>
+  <!-- dummy end -->
+
+  <div class="content">
+    <div class="design-gallery row">
+      <div class="col-md-8 col-sm-12 p-3">
+        <div class="mx-2 pb-2"><a href="{% url 'mainapp-home' %}" class="fw-bold"><i class="bi bi-house-door-fill px-1"></i>Home</a> <span class="text-secondary">&nbsp; > &nbsp; Donate</span></div>
+        <div>
+            <div class="about-content px-2">
+              <div class="primary-heading">Donation</div>
+              <div>
+                <div class="my-3">
+                  <p class="text-secondary fw-bold">Donation</p>
+                  {% for item in ins %}
+                  {% if forloop.revcounter == 1%}
+                    <p class="text-secondary">{{item.instruct | safe}}</p>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+
+                <div class="messenger">
+                  {% for msg in messages %}
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                      {{msg}}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  {% endfor %}
+                </div>
+
+                <div class="contact-form">
+                  <form action="" method="POST" enctype="multipart/form-data" class="row g-3">
+                    {% csrf_token %}
+                      <div class="col-md-12 col-sm-12 pt-2">
+                        <h5>Donation Form</h5>
+                      </div>
+                      <hr>
+                      <div class="col-lg-4 col-md-4 col-sm-12 p-2">
+                        <label for="fname" class="form-label required">First Name</label>
+                        <input type="text" class="form-control" name="fname" id="fname" required>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-sm-12 p-2">
+                        <label for="lname" class="form-label required">Last Name</label>
+                        <input type="text" class="form-control" name="lname" id="lname" required>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-sm-12 p-2">
+                        <label for="email" class="form-label required">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" required>
+                      </div>
+            
+                      <div class="col-12 p-2">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                          <label for="contact" class="form-label required">Contact Number</label>
+                          <div class="input-group mb-3">
+                            <input type="tel" maxlength="12" minlength="7" class="form-control" name="contact" id="contact" required>
+                          </div>
+                        </div>
+                      </div>
+                 
+                      <div class="col-lg-4 col-md-4 col-sm-12 p-2">
+                        <label for="address1" class="form-label required">Address 1</label>
+                        <input type="text" class="form-control" name="address1" id="address1" required>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-sm-12 p-2">
+                        <label for="address2" class="form-label">Address 2</label>
+                        <input type="text" class="form-control" name="address2" id="address2">
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-sm-12 p-2">
+                        <label for="city" class="form-label required">City</label>
+                        <input type="text" class="form-control" name="city" id="city" required>
+                      </div>
+          
+                      <div class="col-lg-4 col-md-4 col-sm-12 p-2">
+                        <label for="state" class="form-label required">State</label>
+                        <input type="text" class="form-control" name="state" id="state" required>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-sm-12 p-2">
+                        <label for="pcode" class="form-label required">Postal Code</label>
+                        <input type="text" class="form-control" name="pcode" id="pcode" required>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-sm-12 p-2">
+                        <label for="country" class="form-label required">Country</label>
+                        <Select name="country" id="country" class="form-select" required>
+                          {% for item in val %}
+                            <option value="{{item.name}}">{{item.name}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+          
+                      <div class="col-lg-6 col-md-6 col-sm-12 p-2">
+                        <label for="donation_type" class="form-label required">Donation Type</label>
+                        <Select name="donation_type" id="donation_type" class="form-select" required>
+                          <option value="" disabled selected>Select a Donation Type...</option>
+                          {% for item in donate_type %}
+                            <option value="{{item.type}}">{{item.type}}</option>
+                          {% endfor %}
+                        </select> 
+                      </div> 
+                      <div class="col-lg-6 col-md-6 col-sm-12 p-2">
+                        <label for="amount" class="form-label required">Donaton Amount (CAD)</label>
+                        <input type="number" class="form-control" name="amount" id="amount" required>
+                      </div>
+          
+                      <div>
+                        <div class="mb-3 p-2">
+                            <label for="screenshot" class="form-label required">Screenshot of payment</label>
+                            <input class="form-control" type="file" name="screenshot" id="screenshot" required>
+                        </div>
+                      </div>
+                      
+          
+                      <div class="col-12 p-2">
+                        We value your privacy. Please read our <a href="{% url 'aboutapp-terms' %}">Privacy and Policy</a> for details.  
+                      </div>
+                        
+                      <div class="col-12 p-2">
+                        <button type="submit" class="btn btn-success mb-3">Submit</button>
+                      </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12 px-3">
+        {% include 'core/sidebar.html' %}
+      </div>
+      
+    </div>
+  </div>
+ <!-- Content-1 End -->
+
+{% endblock content %}

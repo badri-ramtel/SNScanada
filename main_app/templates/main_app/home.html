@@ -1,0 +1,328 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} SNS Canada | Home {% endblock title%}
+
+{% block content %}
+  <!-- dummy start -->
+  <div class="dummy">
+ 
+  </div>
+  <!-- dummy end -->
+
+<!-- Banner Start -->
+{% include 'main_app/slider.html' %}
+<!-- Banner End -->
+ 
+<!-- About and President content Start -->
+  <div class="content">
+    <div class="design-gallery row">
+       <div class="col-lg-8 col-md-6 col-sm-12 p-3" data-aos="fade-up" data-aos-duration="1500">
+         <div>
+           <div class="about-content">
+             <div class="primary-heading">About Us</div>
+             <div>
+                <div class="about-text">
+                  {% for item in about %}
+                    <p>{{item.about_content | safe}}</p>
+                  {% endfor %}
+                </div>
+               <div class="read-more-one"><a href="{% url 'aboutapp-about' %}" class="btn">Read More...</a></div> 
+             </div>
+           </div>
+         </div>
+       </div>
+
+       <div class="col-lg-4 col-md-6 col-sm-12 p-3" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="3000">
+         <div>
+          <!-- Carousel wrapper -->
+          <div id="carouselPresident" class="carousel carousel-dark carousel-fade" data-bs-touch="true" data-bs-ride="carousel">
+            <!-- Inner -->
+            <div class="carousel-inner carousel-zoom">
+              <!-- Single item -->
+          {% for item in pre %}
+           <div class="card-design carousel-item {% if forloop.counter0 == 0 %} active {% endif %} overflow-hidden" data-bs-interval="15000">
+             <div class="text-center text-design fw-bold">{{item.title}}</div>
+             <div class="card mx-4">
+               <div class="img-size">
+                 <img src="{{item.image.url}}" class="card-img-top" alt="..."> 
+               </div>
+               <div class="card-body text-center">
+                 <div class="card-title"><h5 class="fst-italic"><u class="">{{item.name}}</u></h5></div>
+               </div>
+               <div>
+                 <em class="president-card_message">
+                   <p class="">{{item.p_message}}</p> 
+                 </em>
+               </div>
+               <div class="read-more-one text-center"><a class="btn" href="{% url 'mainapp-president' %}">Read More...</a></div>
+             </div>
+           </div>
+         
+          <!-- Carousel wrapper -->
+          {% endfor %}
+        </div>
+      </div>
+         </div>
+       </div>
+    </div>
+  </div>
+<!-- About and President content End -->
+
+<!-- events, news and documents css Start -->
+  <div class="content">
+    <div class="design-gallery row">
+
+      <div class="col-lg-4 col-md-12 col-sm-12 p-3">
+        <div>
+          <div class="card-design">
+            <div class="design-list">
+              <div class="primary-heading overflow-hidden">Events</div> 
+              <div class="me-4"><h2><i class="bi bi-calendar-event"></i></h2></div>
+            </div>
+            <div class="list">
+              {% for item in eventor %}
+                <div class="list-card">
+                  <div class="list-card-content">
+                    <div class="card-content-left text-nowrap overflow-hidden ms-3 me-3">
+                      <p class=""><a href="{% url 'eventapp-event' %}?eventor={{item.event_name}}">{{item.event_name}}</a></p> 
+                    </div>
+                    <div class="card-content-right d-flex justify-content-end text-nowrap me-3"> 
+                      <p class="">{{item.event_created_date}}</p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+              {% endfor %} 
+            </div>
+            <div class="read-more-one mx-4"><a href="{% url 'eventapp-event' %}" class="btn">See More...</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-12 col-sm-12 p-3">
+        <div>
+          <div class="card-design">
+            <div class="design-list">
+              <div class="primary-heading overflow-hidden">News/Posts</div>
+              <div class="me-4"><h2><i class="bi bi-newspaper"></i></h2></div>
+            </div>
+            <div class="list">
+              {% for item in news %}
+              <div class="list-card">
+                <div class="list-card-content">
+                  <div class="card-content-left text-nowrap overflow-hidden ms-3 me-3">
+                    <p><a href="{% url 'aboutapp-viewnews' item.id %}">{{item.title}}</a></p>
+                  </div>
+                  <div class="card-content-right d-flex justify-content-end text-nowrap me-3">
+                    <p>{{item.date}}</p>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              {% endfor %}
+            </div>
+            <div class="read-more-one mx-4"><a href="{% url 'aboutapp-news' %}" class="btn">See More...</a></div> 
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-12 col-sm-12 p-3">
+        <div>
+          <div class="card-design">
+            <div class="design-list">
+              <div class="primary-heading overflow-hidden">Programs</div>
+              <div class="me-4"><h2><i class="bi bi-link-45deg"></i></h2></div>
+            </div>
+            <div>
+              <div class="list">
+                {% for item in program %}
+                <div class="list-card">
+                  <div class="list-card-content align-center">
+                    <div class="card-content-left text-nowrap align-self-center overflow-hidden ms-3 me-3">
+                      <p class="">
+                        <a href="{% url 'documentapp-register' %}?program={{item.f_name}}">{{item.f_name}}</a>
+                      </p>
+                    </div>
+                    <div class="card-content-right d-flex justify-content-end text-nowrap me-3">
+                      <p>
+                        <button type="button" class="is-circle"><h6><a href="/media/{{item.files}}" target="_blank"><i class="bi bi-eye"></i></a></h6></button>
+                        <button type="button" class="is-circle doc-download"><h6><a href="/media/{{item.files}}" download><i class="bi bi-download"></i></a></h6></button> 
+                      </p> 
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                {% endfor %}
+              </div>
+              <div class="read-more-one mx-4"><a href="{% url 'documentapp-register' %}" class="btn">See More...</a></div> 
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!-- events, news and docsuments css  End -->
+
+<!-- Gallery, Calendar and Advertise css Start -->
+  <div class="content">
+    <div class="design-gallery row">
+
+      <!-- Gallery Start--> 
+      <div class="col-lg-6 col-md-12 col-sm-12 py-3 ps-3">
+        <div class="photo-gallery">
+          <div class="design-list m-0 px-1 d-flex">
+            <div class="primary-heading overflow-hidden text-center">Gallery</div> 
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" id="btn-info" type="button" data-bs-toggle="dropdown" aria-expanded="false">Category</button>
+              <ul class="dropdown-menu p-2" id="year-lists">
+                {% for category in categories %}
+                  <li class="m-0" id="list-group-item"><a class="dropdown-item nav-link m-2 home-gallery" id="" href="#" data-category="{{ category.name }}">{{category.name}}</a></li>
+                {% endfor %}   
+              </ul>
+            </div>
+          </div>
+          <div class="design-list m-0 px-1 d-flex" id="gallery">
+            <div class="row gallery-view flex-grow-1" id="gallery-views">
+              <div class="" id="borders">
+                <div class="row ajax-home" id="">
+                  {% for photo in photos %}
+                      <div class="col-md-4 m-0 p-0"> 
+                        <div class="album" id="home-album">
+                          <div class=""> 
+                            <a href="{% url 'galleryapp-photo' photo.category.id photo.id %}">
+                              <div class="image-design"><img class="responsive-image" src="{{photo.image.url}}" alt="picture here..."/></div>
+                              <div class="album-text" id="gallery-view">
+                                <div class="album-text-title">{{photo.category.name}}</div>
+                              </div>
+                            </a>
+                          </div>
+                        </div> 
+                      </div>
+                  {% empty %}
+                    <div class="text-center m-5"><h3>No Photos Uploaded....</h3></div>
+                  {% endfor %} 
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+      <!-- Gallery End-->
+
+      <!-- Calendar Start -->
+      <div class="col-lg-3 col-md-6 col-sm-12 col-12 py-3 ps-3">
+        <div class="photo-gallery">
+          <div class="design-list d-flex justify-content-center m-0 px-1">
+            <div class="primary-heading overflow-hidden">Calendar</div>
+          </div> 
+          <div class="design-list-new d-flex justify-content-center m-0 px-1" id="gallery">
+            <div class="row flex-grow-1">
+              <div class="calendar dark">
+                <div class="calendar_inner">
+                  <div class="calendar_controls px-1">
+                      <div class="calendar_headings">
+                        <i class="fa-solid fa-arrow-left" id="prev"></i>
+                        <h5 class="month_year pb-1"></h5>
+                        <i class="fa-solid fa-arrow-right" id="next"></i>
+                      </div>
+                      <div class="current_datetime">
+                        <p class="daytxt">Today</p>
+                        <p class="datetxt ms-2">Tue, 10, Oct 2023</p>
+                      </div>
+                      <div class="days_date">
+                        <ul class="days">
+                          <li>Sun</li>
+                          <li>Mon</li>
+                          <li>Tue</li>
+                          <li>Wed</li>
+                          <li>Thu</li>
+                          <li>Fri</li>
+                          <li>Sat</li>
+                        </ul>
+                        <ul class="dates">
+                          <!-- <li>1</li>
+                          <li>2</li>
+                          <li>3</li>
+                          <li>4</li>
+                          <li class="active">5</li>
+                          <li>6</li>
+                          <li>7</li>
+                          <li>8</li>
+                          <li>9</li>
+                          <li>10</li>
+                          <li>11</li>
+                          <li>12</li>
+                          <li>13</li>
+                          <li>14</li>
+                          <li>15</li>
+                          <li>17</li>
+                          <li>18</li>
+                          <li>19</li>
+                          <li>20</li>
+                          <li>21</li>
+                          <li>22</li>
+                          <li>23</li>
+                          <li>24</li>
+                          <li>25</li>
+                          <li class="dummy">26</li>
+                          <li class="dummy">27</li>
+                          <li class="dummy">28</li>
+                          <li class="dummy">29</li>
+                          <li class="dummy">30</li> -->
+                        </ul>
+                      </div>
+                  </div>
+                </div>
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Calendar End -->
+
+      <!-- ads and notice Start -->
+      <div class="col-lg-3 col-md-6 col-sm-12 col-12 py-3 ps-3">
+        <div class="photo-gallery">
+          <div class="design-list d-flex justify-content-center m-0 px-1">
+            <div class="primary-heading overflow-hidden">Ads/Notice</div>
+          </div>
+
+          <div class="design-list-new d-flex justify-content-center m-0 px-1" >
+            <div class="row flex-grow-1">
+              <!-- Carousel wrapper -->
+              <div id="carouselExampleFade" class="carousel carousel-dark carousel-fade" data-bs-touch="true" data-bs-ride="carousel">
+                <!-- Inner -->
+                <div class="carousel-inner carousel-zoom">
+                  <!-- Single item -->
+                  {% for obj in ads %}
+                  <a href="{% url 'advertise' obj.id %}" class="text-white">
+                  <div class="carousel-item active overflow-hidden" data-bs-interval="2000" id="ads-section"> 
+                    <img src="{{obj.content.url}}" alt="..." class="img-responsive">
+                  </div>
+                  </a>
+                  {% endfor %}                        
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+                
+              </div>
+              <!-- Carousel wrapper -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ads and notice End -->
+
+    </div>
+  </div>
+<!-- Gallery, Calendar and Advertise css End -->
+
+{% endblock content %}

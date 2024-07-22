@@ -1,0 +1,27 @@
+<!-- Subscribe Start -->
+<section class="text-center">
+  <div class="subscribe row justify-content-center">
+    <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+      <div class="px-5">
+        <div id="scroll-container">
+          <div class="subscribe-title" id="scroll-text">
+            <h2>Subscribe to our Newsletter</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+      <div class="subscribe-form px-5">
+        <div>
+          <form class="sub-form" id="subscriptionForm" href="#">
+            {% csrf_token %}
+              <input type="email" name="email" id="email" placeholder="Your Email Address Here..." class="text-dark fw-bold mt-2" required autocomplete="email">
+              <button type="submit" class="sub-btn mt-2" >Subscribe</button>
+          </form>
+        </div>
+      </div> 
+    </div>
+  </div>    
+</section>
+<!-- Subscribe End --> 

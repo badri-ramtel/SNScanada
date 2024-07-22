@@ -1,0 +1,85 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} SNS Canada | News {% endblock title%}
+
+{% block content %}
+  <!-- dummy start -->
+  <div class="dummy">
+
+  </div>
+  <!-- dummy end -->
+
+  <div class="content">
+    <div class="gallery-page">
+      <div class="design-list">
+        <div class=""><a href="{% url 'mainapp-home' %}" class="fw-bold"><i class="bi bi-house-door-fill px-1"></i>Home</a> <span class="text-secondary">&nbsp; > &nbsp; News</span></div>
+      </div>
+    </div>
+
+    <div class="gallery-page"> 
+      <div class="design-list pb-3">
+        <div class="primary-heading">News/Posts</div>
+        <div class="dropdown d-md-none">
+          <button class="btn dropdown-toggle" id="btn-info" type="button" data-bs-toggle="dropdown" aria-expanded="false">News List</button>
+          <ul class="dropdown-menu p-2" id="year-list">
+            <li class="" id="list-group-item"><a class="dropdown-item nav-link m-2" href="{% url 'aboutapp-news' %}">All</a></li>
+            {% for item in news %}
+              <li class="" id="list-group-item"><a class="dropdown-item nav-link m-2" href="{% url 'aboutapp-viewnews' item.id %}">{{item.title}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="design-gallery row"> 
+      <div class="col-lg-2 col-md-2 col-sm-12">
+        <div class="row">
+          <div class="card border border-info collapse d-md-block">
+            <div class="card-header text-center fs-3">News List</div>
+            <ul class="list-group list-group-flush" id="list-group">
+              <li class="list-group-item nav-text"><a class="nav-link" href="{% url 'aboutapp-news' %}">All</a></li>
+              {% for item in news %}
+              <li class="list-group-item text-nowrap nav-text"> 
+                <a class="nav-link" href="{% url 'aboutapp-viewnews' item.id %}">{{item.title}}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-10 col-md-10 col-sm-12">
+        <div class="row me-5">
+          {% for items in page_obj %}
+            <div class="album">
+              <div class="album-cover">
+                  <div class="album-text-title fs-4 text-decoration-underline pt-3">{{items.title}}</div>
+                  <div class="album-brief pt-3">{{items.brief | safe}}</div>
+              </div>
+              <div class="album-text-events"> 
+                <p class="album-date">{{items.date}}</p>
+                <a href="{% url 'aboutapp-viewnews' items.id %}" class="">Read More...</a>
+              </div>
+              <hr>
+            </div>
+            {% empty %} 
+            <div class="text-center m-5"><h3>Sorry!!! No Any Events Currently Available....</h3></div>
+          {% endfor %}
+        </div> 
+
+        <br>
+        <div class="text-center">
+          {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">&laquo Prev</a>
+          {% endif %}
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next &raquo</a>
+          {% endif %}
+        </div>
+        <br>  
+
+      </div>
+    </div>
+  </div>      
+
+{% endblock content %}

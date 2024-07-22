@@ -1,0 +1,66 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} SNS Canada | Executive Committees {% endblock title%}
+
+{% block content %}
+  <!-- dummy start -->
+  <div class="dummy">
+
+  </div>
+  <!-- dummy end -->
+
+  <div class="gallery-page">
+    <div class="design-list">
+      <div class=""><a href="{% url 'mainapp-home' %}" class="fw-bold"><i class="bi bi-house-door-fill px-1"></i>Home</a> <span class="text-secondary">&nbsp; > &nbsp; Committee</span></div>
+    </div>
+  </div>
+
+  <div class="content"> 
+    <div class="gallery-page">
+        <div class="design-list pb-3">
+          <div class="primary-heading">Executive Committee</div>
+          <div class="dropdown">
+            <button class="btn dropdown-toggle" id="btn-info" type="button" data-bs-toggle="dropdown" aria-expanded="false">{% for item in years %}{{item.year_frame}}{% endfor %}</button>
+            <ul class="dropdown-menu p-2" id="year-list">
+              {% for items in committee %}
+                <li class="" id="list-group-item"><a class="dropdown-item nav-link m-2" href="{% url 'teamapp-team' %}?member={{items.year_frame}}">{{items.year_frame}}</a></li> 
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+    </div>
+    <div class="gallery-page">
+      <div class="form-quote mx-3">
+        {% for item in quote %}
+          <p class="fs-3 text-underlined">{{item.submenu}}</p>
+        {% endfor %}
+        <p>SNS team is comprised of talented and experienced individuals who work together with core values, hard work, and trust. We sincerely enjoy the work we do, and our community gets to reap the benefits.</p>
+      </div>
+    </div>
+
+    <div class="design-gallery row">
+      <div class="col-12"> 
+        <div class="row" id="sns-album">
+          {% for item in community %}
+          <div class="col-lg-3 col-md-4 col-sm-6 col-12 m-0 p-0">
+            <div class="sns-album m-3">
+              <a href="{% url 'teamapp-viewcommittee' item.id %}">
+                <div class="profile-cover d-flex">
+                  <img class="flex-fill" src="{{item.profile_pic.url}}" alt="picture here..."/>
+                </div>
+                <div class="text-center text-white bg-secondary" id="album-sns"> 
+                  <div class="album-text-title p-1"><h6>{{item.name}}</h6></div>
+                  <div class="album-text-title lh-1 pb-2"><p>{{item.position}}</p></div> 
+                </div>
+              </a>
+            </div>
+          </div> 
+            {% empty %}
+              <div class="text-center my-5"><h3>No Executive Member Available....</h3></div>
+          {% endfor %}  
+        </div>
+      </div>
+    </div>
+  </div>      
+
+{% endblock content %}

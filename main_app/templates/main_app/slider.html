@@ -1,0 +1,32 @@
+ {% load static %}
+ <!-- Banner Start -->
+ <section class="banner pb-5">
+    <div id="carouselExampleCaptions" class="carousel slide carousel-dark" data-bs-touch="true" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          {% for item in counter %}
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{item}}" class="active"></button>
+          {% endfor %}
+        </div>
+   
+        <div class="carousel-inner pt-2 text-center">
+          {% for item in slide %}
+          <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}" data-bs-interval="2000">
+            <img src="{{ item.picture.url }}" class="d-block w-100 object-fit-cover" height="450" alt="...">
+            <div class="carousel-caption d-flex d-md-block justify-content-center">
+                <h5 class="">{{ item.title }}</h5>
+            </div>
+          </div> 
+          {% endfor %}        
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+  </section> 
+  <!-- Banner End -->

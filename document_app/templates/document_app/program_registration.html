@@ -1,0 +1,208 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} SNS Canada | Program Registration {% endblock title%}
+
+{% block content %}
+  <!-- dummy start -->
+  <div class="dummy">
+
+  </div>
+  <!-- dummy end -->
+
+  <div class="content">
+    <div class="design-gallery row">
+      <div class="col-lg-8 col-md-8 col-sm-12 p-3">
+        <div class="pb-2"><a href="{% url 'mainapp-home' %}" class="fw-bold"><i class="bi bi-house-door-fill px-1"></i>Home</a> <span class="text-secondary">&nbsp; > &nbsp; Program Registration</span></div>
+        <div>
+          <div class="doc-table">
+            <div class="about-content">
+              <div class="primary-heading">Program Registration</div>
+              <div>
+                <div>
+                {% for item in ins %}
+                  {% if forloop.revcounter == 1%}
+                    <div class="my-3"><p class="text-secondary">{{item.instruct | safe}}</p></div>
+                  {% endif %}
+                {% endfor %}
+                </div>
+
+              <div class="row">
+                <div class="dropdown col-lg-3 col-md-3 col-sm-12 my-1">
+                  <button class="btn dropdown-toggle" id="btn-info" type="button" data-bs-toggle="dropdown" aria-expanded="false">Program Name</button>
+                  <ul class="dropdown-menu" id="program-name">
+                    {% for item in reg %}
+                      <li id="program-name-list"><a class="dropdown-item" href="{% url 'documentapp-register' %}?program={{item.f_name}}">{{item.f_name}}</a></li>
+                    {% endfor %} 
+                  </ul> 
+                </div>
+
+                <div class="aboutapp-text m-0 col-lg-9 col-md-9 col-sm-12 my-1">
+                    <div style="overflow-x: auto;">
+                      <table cellspacing="0" cellpadding="0" border="3" class="" style="width: 95%; table-layout: fixed; overflow: hidden;">
+                        <thead class="border border-dark">
+                          <tr class="wrapper text-center">
+                            <th colspan="1" rowspan="1" class="border border-dark">
+                              <div>Program Name</div>
+                            </th>
+                            <th colspan="1" rowspan="1" class="border border-dark"><div>Starting Date</div></th>
+                            <th colspan="1" rowspan="1" class="border border-dark"><div>Location</div></th>
+                            <th colspan="1" rowspan="1" class="border border-dark"><div class="text-center">View / Download</div></th>
+                          </tr>
+                        </thead>
+                        
+                          {% for item in program %}
+                          <tr class="text-secondary overflow-hidden text-wrap text-center">
+                            <td colspan="1" rowspan="1" class="border border-dark"><div class="text-wrap overflow-hidden">{{item.f_name}}</div></td>
+                            <td colspan="1" rowspan="1" class="border border-dark"><div class="text-wrap overflow-hidden">{{item.c_date}}</div></td>
+                            <td colspan="1" rowspan="1" class="border border-dark"><div class="text-wrap overflow-hidden">{{item.location}}</div></td>
+                            <td colspan="1" rowspan="1" class="border border-dark">
+                              <div class="text-center"> 
+                                <button type="button" class="is-circle"><h6><a href="/media/{{item.files}}" target="_blank"><i class="bi bi-eye"></i></a></h6></button>
+                                <button type="button" class="is-circle doc-download"><h6><a href="/media/{{item.files}}" download><i class="bi bi-download"></i></a></h6></button> 
+                              </div>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                      </table>
+                    </div>
+                </div>
+              </div>
+ 
+                <div class="messenger pt-3">
+                  {% for msg in messages %}
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                      {{msg}}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  {% endfor %}
+                </div>
+
+                <div class="contact-form mt-2 me-4 mx-2">
+                  <form action="" method="POST" enctype="multipart/form-data" class="row g-3">
+                    {% csrf_token %}
+                    <div class="col-md-12 col-sm-12 pt-2">
+                      <h5>Program Registration Form</h5>
+                    </div>
+                    <hr>
+                    <div class="col-md-6 col-sm-12 p-2">
+                      <label for="yname" class="form-label required">Participant Full Name</label>
+                      <input type="text" class="form-control" name="yname" id="yname" required>
+                    </div>
+                    <div class="col-md-6 col-sm-12 p-2">
+                      <label for="age" class="form-label required">Age</label>
+                      <input type="number" class="form-control" name="age" id="age" required>
+                    </div>
+          
+                    <div class="col-12 p-2">
+                      <div class="col-md-6 col-sm-12">
+                        <label for="address" class="form-label required">Address</label>
+                        <input type="text" class="form-control" name="address" id="address" required>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-4 col-sm-12 p-2">
+                      <label for="city" class="form-label required">City</label>
+                      <input type="text" class="form-control" name="city" id="city" required>
+                    </div>
+                    <div class="col-md-4 col-sm-12 p-2">
+                      <label for="province" class="form-label required">Province</label>
+                      <input type="text" class="form-control" name="province" id="province" required>
+                    </div>
+                    <div class="col-md-4 col-sm-12 p-2">
+                      <label for="pcode" class="form-label required">Postal Code</label>
+                      <input type="text" class="form-control" name="pcode" id="pcode">
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 p-2">
+                      <label for="ycontact" class="form-label required">Phone Number</label>
+                      <div class="input-group mb-3">
+                        <input type="tel" maxlength="12" minlength="7" class="form-control" name="contact" id="contact" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 p-2">
+                      <label for="yemail" class="form-label required">Email id</label>
+                      <input type="email" class="form-control" name="yemail" id="yemail" required>
+                    </div>
+
+                    <div class="col-12 p-2">
+                      <div class="col-md-6 col-sm-12">
+                        <label for="pname" class="form-label required">Parent Name</label>
+                        <input type="text" class="form-control" name="pname" id="pname" required>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 p-2">
+                      <label for="pcontact" class="form-label required">Parent Contact Number</label>
+                      <div class="input-group mb-3">
+                        <input type="tel" maxlength="12" minlength="7" class="form-control" name="pcontact" id="pcontact" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 p-2">
+                      <label for="pemail" class="form-label required">Parent Email id</label>
+                      <input type="email" class="form-control" name="pemail" id="pemail" required>
+                    </div>
+
+                    <div class="col-12 p-2">
+                      <div class="col-md-6 col-sm-12">
+                        <label for="program" class="form-label required">Categories</label>
+                        <Select name="program" id="program" class="form-select" required>
+                          <option value="" disabled selected>Select a Program....</option>
+                          {% for item in reg %}
+                            <option value="{{item.f_name}}">{{item.f_name}}</option>
+                          {% endfor %}
+                        </select> 
+                      </div>
+                    </div>
+      
+                    <div class="col-12">
+                      <div class="mb-3 p-2">
+                          <label for="screenshot" class="form-label required">Screenshot of payment</label>
+                          <input class="form-control" type="file" name="screenshot" id="screenshot" required>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="mb-3 p-2">
+                          <label for="screenshot" class="form-label required">Upload Your Manual Registration Files</label>
+                          <input class="form-control" type="file" name="manual" id="manual" required>
+                      </div>
+                    </div>
+                    
+                    <div class="col-12 p-2">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="tpcheck" id="tpcheck" required>
+                        <label class="form-check-label required" for="tpcheck">
+                          I have read and accepted the <a href="{% url 'aboutapp-terms' %}">Terms of Use and Privacy Policy.</a>
+                        </label>
+                      </div>
+                    </div>
+      
+                    <div class="col-12 p-2">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="encheck">
+                        <label class="form-check-label" for="encheck">
+                          SNS may keep me informed via email about events and newsletters.
+                        </label>
+                      </div>
+                    </div>
+                    
+                    <div class="col-12 p-2">
+                      <button type="submit" class="btn btn-success mb-3">Submit</button>
+                    </div>
+          
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+            
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-12 px-3">
+        {% include 'core/sidebar.html' %}
+      </div>
+      
+    </div>
+  </div>
+{% endblock content %}
