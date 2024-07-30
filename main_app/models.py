@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import FileExtensionValidator 
+from tinymce.models import HTMLField
 # Create your models here.
 
 class Slider(models.Model):
@@ -61,3 +61,28 @@ class Advertise(models.Model):
         db_table = 'Advertisement'
         verbose_name_plural = 'Advertisement'
         ordering = ['-id']
+
+
+class AlertMessage(models.Model):
+    title = models.CharField(max_length= 25, null= False, blank= False)
+    pic_message = models.ImageField(upload_to= 'images/alert_message/', null= False, blank= False)
+    content = HTMLField(null= False, blank= False)
+    hide = models.BooleanField(default= False)
+
+    def __str__(self):
+        return f'{self.title} hide::{self.hide}'
+    
+    class Meta:
+        db_table = 'Alert Message'
+        verbose_name_plural = 'Alert Message'
+        ordering = ['-id']
+
+class AlertMessageHide(models.Model):
+    hidden = models.BooleanField(default= False)
+
+    def __str__(self):
+        return f'{self.hidden}'
+    
+    class Meta:
+        db_table = 'Alert Message Hidden'
+        verbose_name_plural = 'Alert Message Hidden'

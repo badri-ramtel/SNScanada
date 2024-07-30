@@ -1,0 +1,11 @@
+1. this is about page
+2. this id terms and conditon page which is handle by admin only
+3. vision page
+4. this is feedback page, where user gives feedback
+5. this is donation page, you can see the detail here, how much dotion had been done
+6. memeber page
+7. vacancy page, give the vacancy here
+8. appreciaton, laws and convention, reference and registraion page, which all are editiable, delete and create new one
+9. main page- where you can add slider, prsident profile and subcibe details
+10.this is team page, where youcan add team memebre details
+11. as most of the things is completed we are in the phase of deploy only thanks

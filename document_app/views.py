@@ -39,7 +39,7 @@ def register(request):
         your_contact = request.POST.get('contact')
         your_email = request.POST.get('yemail')
         parents_name = request.POST.get('pname')
-        parents_contact = request.POST.get('pcontact')
+        parents_contact = request.POST.get('pcontact[full]')
         parents_email = request.POST.get('pemail')
         program = request.POST.get('program')
         screenshot = request.FILES.get('screenshot')

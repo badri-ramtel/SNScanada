@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from main_app.models import Slider, President, PresidentMessage, Subscribe, Advertise
+from main_app.models import Slider, President, PresidentMessage, Subscribe, Advertise, AlertMessage, AlertMessageHide
 from about_app.models import About, News
 from gallery_app.models import Category, Photo
 from event_app.models import CreateEvent
@@ -32,7 +32,19 @@ def home(request):
         ads = Advertise.objects.all() 
     else:
         ads = Advertise.objects.filter(content__id= adv)  
-    context = {'slide': slide, 'counter': counter, 'about': about, 'pre': pre, 'categories': categories, 'eventor': eventor, 'news': news, 'program': program, 'ads': ads, 'photos': photos}
+    
+    alert = AlertMessage.objects.filter(hide = False)
+    print(alert)
+    condition = AlertMessageHide.objects.all().values_list('hidden', flat= True)
+    # condition_list = list(condition)
+    # joined_string = ", ".join(map(str, condition_list))
+    for item in condition:
+        condition_list = item
+    
+    print(condition_list)
+    # print(condition_list)
+    # print(joined_string)
+    context = {'slide': slide, 'counter': counter, 'about': about, 'pre': pre, 'categories': categories, 'eventor': eventor, 'news': news, 'program': program, 'ads': ads, 'photos': photos, 'alert': alert, 'condition_list': condition_list}
     return render(request, 'main_app/home.html', context) 
     
 

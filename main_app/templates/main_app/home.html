@@ -40,7 +40,7 @@
             <div class="carousel-inner carousel-zoom">
               <!-- Single item -->
           {% for item in pre %}
-           <div class="card-design carousel-item {% if forloop.counter0 == 0 %} active {% endif %} overflow-hidden" data-bs-interval="15000">
+           <div class="card-design carousel-item {% if forloop.counter0 == 0 %} active {% endif %} overflow-hidden" data-bs-interval="7000">
              <div class="text-center text-design fw-bold">{{item.title}}</div>
              <div class="card mx-4">
                <div class="img-size">
@@ -181,7 +181,7 @@
                 {% endfor %}   
               </ul>
             </div>
-          </div>
+          </div> 
           <div class="design-list m-0 px-1 d-flex" id="gallery">
             <div class="row gallery-view flex-grow-1" id="gallery-views">
               <div class="" id="borders">
@@ -324,5 +324,29 @@
     </div>
   </div>
 <!-- Gallery, Calendar and Advertise css End -->
+ 
+<!-- alerts message Start-->
+{% if condition_list == False %}
+{% for msg in alert %}
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{msg.title}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-center overflow-hidden" style="height: 30vh; max-width: 30vw; margin: auto;"><img src="{{msg.pic_message.url}}" alt="..." class="object-fit-cover"></div>
+        <div class="text-center">{{msg.content | safe}}</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+<!-- alerts message End-->
 
 {% endblock content %}

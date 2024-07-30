@@ -1,0 +1,92 @@
+from django.shortcuts import render, redirect
+from .models import Category, Photo
+from django.contrib import messages
+from django.core.paginator import Paginator
+
+# Create your views here.
+
+def gallery(request):
+    category = request.GET.get('category')
+    # print('category:', category)
+    if category == None:
+        photos = Photo.objects.all()
+        # print('&&&&&&&&&&&&&&&&&&')
+        # print('photos:', photos)
+    else:
+        photos = Photo.objects.filter(category__name=category)
+
+    categories = Category.objects.all()
+    # print('********************')
+    # print('categories:', categories)
+    # photoies = Photo.objects.all()
+    # paginator = Paginator(photos, 9)
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
+    # print('%%%%%%%%%%%%')
+    # print(page_obj)
+    context = {'categories': categories, 'photos': photos,}
+    return render(request, 'gallery_app/gallery.html', context)
+
+
+def viewPhoto(request, pk):
+    # categories = request.GET.get('category')
+    # print('categories:', categories)
+    # if category == None:
+    #     photos = Photo.objects.all()
+    # else:
+    #     photos = Photo.objects.filter(category__name=category)
+    categories = Category.objects.all()
+    # print('categories:', categories)
+    photo = Photo.objects.get(id= pk)
+    context = {'categories': categories, 'photo': photo}
+    return render(request, 'gallery_app/photo.html', context)
+
+
+def addPhoto(request):
+    categories = Category.objects.all()
+    if request.method == 'POST':
+        data = request.POST
+        image = request.FILES.get('image')
+        # print('data:', data)
+        # print('image:', image)
+        if data['category'] != 'none':
+            category = Category.objects.get(id=data['category'])
+        
+        elif data['category_new'] != '':
+            category, created = Category.objects.get_or_create(name=data['category_new'])
+
+        else:
+            category = None
+
+        photo = Photo.objects.create(category = category, description = data['description'], image = image,)
+        messages.success(request, 'Uploaded Successfully!!!.')
+
+        return redirect('galleryapp-gallery')
+
+    context = {'categories': categories}
+    return render(request, 'gallery_app/addphoto.html', context)
+
+
+def editPhoto(request, pk):
+    pass
+    # categories = Category.objects.all()
+    # # print('categories:', categories)
+    # photo = Photo.objects.get(id= pk)
+    # context = {'categories': categories, 'photo': photo}
+    # return render(request, 'gallery_app/edit.html', context)
+
+
+def deletePhoto(request, pk):
+    # categories = Category.objects.get(id= pk)
+    # photos = Photo.objects.filter(id= pk)
+    # photos.delete()
+    # categories.delete()
+    # return redirect('galleryapp-gallery')
+    # categories = Category.objects.all()
+    try:
+        photos = Photo.objects.get(id= pk)
+    except Photo.DoesNotExist:
+        return redirect('404notfound')
+    # context = {'categories': categories, 'pho': pho}
+    photos.delete()
+    return redirect('galleryapp-gallery')

@@ -1,11 +1,14 @@
 // Animate On Scroll js
 AOS.init();
 
-
-// $(".exts").ddslick({
-//   width:"100%",
-//   imagePosition:"left",
-// });
+//
+document.querySelectorAll('.nav-link').forEach
+(link => {
+    // console.log(link.href, window.location.href)
+    if(link.href === window.location.href){
+        link.setAttribute('aria-current', 'page')
+    }
+})
 
 
 //Subcribe JS Start
@@ -38,4 +41,16 @@ $(document).ready(function() {
           }
       });
   });
+});
+
+// Alert message in homepage
+$(document).ready(function() {
+    // Check if the modal has been shown before
+    if (!sessionStorage.getItem('modalShown')) {
+        // Show the modal
+        $('#staticBackdrop').modal('show');
+
+        // Set the flag in localStorage
+        sessionStorage.setItem('modalShown', 'true');
+    }
 });
