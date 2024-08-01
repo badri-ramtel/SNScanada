@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib import messages
 from django.utils.translation import ngettext
 from document_app.models import Laws, References, Appreciations, Registrations, RegistrationInstruction, Program_Registrations
-from import_export.admin import ExportMixin
+from import_export.admin import ExportActionMixin
 
 # Register your models here.
 admin.site.register(Laws)
@@ -11,7 +11,7 @@ admin.site.register(Appreciations)
 admin.site.register(Registrations)
 admin.site.register(RegistrationInstruction)
 
-class ProgramAdmin(ExportMixin, admin.ModelAdmin):
+class ProgramAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ['participant_full_name', 'age', 'address', 'your_contact', 'your_email', 'parents_full_name', 'parents_contact', 'program', 'status']
     actions = ['take_action']
 
@@ -26,6 +26,6 @@ class ProgramAdmin(ExportMixin, admin.ModelAdmin):
             )
             % updated,
             messages.SUCCESS,
-        )
+        ) 
 
 admin.site.register(Program_Registrations, ProgramAdmin)
