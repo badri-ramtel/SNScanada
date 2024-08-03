@@ -5,11 +5,11 @@ from team_app.models import Year_Book, Committee, SubMenu
 def team(request):
     teams = request.GET.get('member')
     if teams == None:
-        community = Committee.objects.filter(year__current_year= True)
+        community = Committee.objects.filter(year__current_year= True).order_by('member_id')
         years = Year_Book.objects.filter(current_year= True)
         quote = SubMenu.objects.filter(year__current_year= True)
     else:
-        community = Committee.objects.filter(year__year_frame= teams)
+        community = Committee.objects.filter(year__year_frame= teams).order_by('member_id')
         years = Year_Book.objects.filter(year_frame= teams)
         quote = SubMenu.objects.filter(year__year_frame= teams)
         

@@ -36,7 +36,7 @@ let month = dateObj.getMonth(); // month
 let year = dateObj.getFullYear(); // year
 let date = dateObj.getDate(); // dates;
 // today date
-//datetxtEl.innerHTML = `${dayName} &nbsp ${date}, ${dmObj.months[month]}, ${year}`;
+datetxtEl.innerHTML = `${dayName} &nbsp ${date}, ${dmObj.months[month]}, ${year}`;
 const displayCalendar = () => {
   let firtDayOfMonth = new Date(year, month, 1).getDay(); // first day of the month
   let lastDateofMonth = new Date(year, month + 1, 0).getDate(); // last date of the month
