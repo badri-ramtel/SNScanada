@@ -34,14 +34,15 @@ def home(request):
         ads = Advertise.objects.filter(content__id= adv)  
     
     alert = AlertMessage.objects.filter(hide = False)
-    print(alert)
+    # print(alert)
+    condition_list = []
     condition = AlertMessageHide.objects.all().values_list('hidden', flat= True)
     # condition_list = list(condition)
     # joined_string = ", ".join(map(str, condition_list))
     for item in condition:
         condition_list = item
     
-    print(condition_list)
+    # print(condition_list)
     # print(condition_list)
     # print(joined_string)
     context = {'slide': slide, 'counter': counter, 'about': about, 'pre': pre, 'categories': categories, 'eventor': eventor, 'news': news, 'program': program, 'ads': ads, 'photos': photos, 'alert': alert, 'condition_list': condition_list}
@@ -63,7 +64,7 @@ def subscribe(request):
         form = Subscribe(email= email)
         form.save()
         # success = 'SNS Family Thank you for Subscribe!!!'
-        return JsonResponse({'success': True})
+        return JsonResponse({'success': True}) 
 
     
 def advertise(request, pk):

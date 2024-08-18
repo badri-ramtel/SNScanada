@@ -1323,6 +1323,13 @@ label.required::after {
   margin-left: 4px;
 }
 
+legend.required::after {
+  content: "*";
+  color: red;
+  font-size: 1.4rem;
+  margin-left: 4px;
+}
+
 .row {
   --bs-gutter-x: 0;
 }

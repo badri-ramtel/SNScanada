@@ -176,7 +176,7 @@ ul li {
   z-index: 1;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
   --bs-dropdown-link-active-bg: none;
-    --bs-dropdown-min-width: auto;
+  --bs-dropdown-min-width: auto;
 }
 
 #sub-menu #sub-dropdown-item:hover {

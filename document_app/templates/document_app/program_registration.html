@@ -28,7 +28,7 @@
 
               <div class="row">
                 <div class="dropdown col-lg-3 col-md-3 col-sm-12 my-1">
-                  <button class="btn dropdown-toggle" id="btn-info" type="button" data-bs-toggle="dropdown" aria-expanded="false">Program Name</button>
+                  <button class="btn dropdown-toggle text-wrap me-1" id="btn-info" type="button" data-bs-toggle="dropdown" aria-expanded="false">Program Name</button>
                   <ul class="dropdown-menu" id="program-name">
                     {% for item in reg %}
                       <li id="program-name-list"><a class="dropdown-item" href="{% url 'documentapp-register' %}?program={{item.f_name}}">{{item.f_name}}</a></li>
@@ -40,13 +40,11 @@
                     <div style="overflow-x: auto;">
                       <table cellspacing="0" cellpadding="0" border="3" class="" style="width: 95%; table-layout: fixed; overflow: hidden;">
                         <thead class="border border-dark">
-                          <tr class="wrapper text-center">
-                            <th colspan="1" rowspan="1" class="border border-dark">
-                              <div>Program Name</div>
-                            </th>
-                            <th colspan="1" rowspan="1" class="border border-dark"><div>Starting Date</div></th>
-                            <th colspan="1" rowspan="1" class="border border-dark"><div>Location</div></th>
-                            <th colspan="1" rowspan="1" class="border border-dark"><div class="text-center">View / Download</div></th>
+                          <tr class="wrapper text-center overflow-hidden">
+                            <th colspan="1" rowspan="1" class="border border-dark"><div class="text-wrap overflow-hidden">Program Name</div></th>
+                            <th colspan="1" rowspan="1" class="border border-dark"><div class="text-wrap overflow-hidden">Starting Date</div></th>
+                            <th colspan="1" rowspan="1" class="border border-dark"><div class="text-wrap overflow-hidden">Location</div></th>
+                            <th colspan="1" rowspan="1" class="border border-dark"><div class="text-wrap overflow-hidden">View / Download</div></th>
                           </tr>
                         </thead>
                         
